@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "SuccessfulBA";
+    Layout = "~/Views/Shared/BranchAdminLayoutPage1.cshtml";
+}
+    <h1>Welcome @Session["username"]</h1>
+
+
+
+@using (Html.BeginForm("SuccessfulBA", "Login", FormMethod.Post))
+{
+
+    
+    if (ViewBag.msg != null)
+    {
+        <h1>@ViewBag.msg</h1>
+    }
+
+
+
+}
+
+

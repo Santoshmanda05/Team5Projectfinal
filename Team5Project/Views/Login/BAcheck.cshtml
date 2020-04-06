@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "BAcheck";
+    Layout = "~/Views/Shared/BranchAdminLayoutPage1.cshtml";
+}
+<h3>Welcome @Session["username"]</h3>
+@using (Html.BeginForm())
+{
+
+    <table border="1">
+        <tr>
+            <td><strong>BRANCH ID</strong></td>
+            <td><strong>AS ON DATE</strong></td>
+            <td><strong>VEHICLE ID</strong></td>
+            <td><strong>STATUS</strong></td>
+            <td><strong>NO OF VEHICLES REQUESTED</strong></td>
+            <td><strong>NO OF VEHICLES APPROVED</strong></td>
+        </tr>
+        @foreach (var i in ViewBag.L as IList<Team5Project.Models.Branch_Vehicle_Request>)
+        {
+            <tr>
+                <td><strong>@i.Branch_id</strong></td>
+                <td><strong>@i.As_On_Date</strong></td>
+                <td><strong>@i.Vehicle_id</strong></td>
+                <td><strong>@i.Status</strong></td>
+                <td><strong>@i.No_Of_Vehicles_Requested</strong></td>
+                <td><strong>@i.No_Of_Vehicles_Approved</strong></td>
+
+
+            </tr>
+
+        }
+       
+
+    </table>
+
+
+
+
+
+}
+
+

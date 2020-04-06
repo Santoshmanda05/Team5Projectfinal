@@ -1,0 +1,62 @@
+﻿@model Team5Project.Models.Vehicle_details
+@{
+    ViewBag.Title = "AddNumberOfVehicles";
+    Layout = "~/Views/Shared/BranchAdminLayoutPage1.cshtml";
+}
+
+<h2>AddNumberOfVehicles</h2>
+<h3>Welcome @Session["username"]</h3>
+@using (Html.BeginForm("AddToRequestTable", "Login"))
+{
+<table>
+    <tr>
+        <td>Manufactures Name</td>
+        <td>@Html.TextBoxFor(a => a.Manufactures_name, new { @readonly = "readonly" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>VEHICLE CODE</td>
+        <td>@Html.TextBoxFor(a => a.Vehicle_Code, new { @readonly = "readonly" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>EX_SHOWROOM PRICE</td>
+        <td>@Html.TextBoxFor(a => a.Ex_ShowRoom_Price, new { @readonly = "readonly" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>COLOR</td>
+        <td>@Html.TextBoxFor(a => a.Color, new { @readonly = "readonly" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>SEATING CAPACITY</td>
+        <td>@Html.TextBoxFor(a => a.Seating_Capacity, new { @readonly = "readonly" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>STOCK DATE</td>
+        <td>@Html.TextBoxFor(a => a.Stocks_Lasts_Still, new { @readonly = "readonly" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>
+            ENTER  NO OF REQUEST VEHICLES
+        </td>
+        <td>@Html.TextBox("txtnovR")</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><input type="submit" value="Request" class="btn-success"/></td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+
+}
+

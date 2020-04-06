@@ -1,0 +1,74 @@
+﻿@model Team5Project.Models.Branch_Admin
+@{
+    ViewBag.Title = "BranchAdmin";
+    Layout="~/Views/Shared/_BranchAdmin.cshtml";
+
+}
+
+<h2>BranchAdmin</h2>
+@using (Html.BeginForm("AddBranchAdmin", "Login"))
+
+{
+<table>
+    <tr>
+        <td><strong>Branch ID</strong></td>
+        <td>@Html.TextBoxFor(a => a.Branch_id)</td>
+        <td>
+            @Html.ValidationMessageFor(a => a.Branch_id, "", new { @style = "color:black;" })
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Branch Location</strong></td>
+        <td>@Html.TextBoxFor(a => a.Branch_Location)</td>
+        <td>
+            @Html.ValidationMessageFor(a => a.Branch_Location, "", new { @style = "color:black;" })
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Address</strong></td>
+        <td>@Html.TextBoxFor(a => a.Address)</td>
+        <td>
+            @Html.ValidationMessageFor(a => a.Address, "", new { @style = "color:black;" })
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Mail ID</strong></td>
+        <td>@Html.TextBoxFor(a => a.Mail_id)</td>
+        <td>
+            @Html.ValidationMessageFor(a => a.Mail_id, "", new { @style = "color:black;" })
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Phone</strong></td>
+        <td>@Html.TextBoxFor(a => a.Phone)</td>
+        <td>
+            @Html.ValidationMessageFor(a => a.Phone, "", new { @style = "color:black;" })
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Password</strong></td>
+        <td>@Html.PasswordFor(a => a.Password)</td>
+        <td>
+            @Html.ValidationMessageFor(a => a.Password, "", new { @style = "color:black;" })
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong><input type="submit" value="Register" class="btn-success" /></strong> </td>
+
+    </tr>
+
+</table>
+    if (ViewBag.msg != null)
+    {
+        <h1 style="color:white">@ViewBag.msg</h1>
+    }
+
+
+}
+

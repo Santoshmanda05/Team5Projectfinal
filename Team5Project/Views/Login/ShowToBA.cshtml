@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "ShowToBA";
+    Layout = "~/Views/Shared/BranchAdminLayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm("BAApprove", "Login"))
+{
+    <table border="1">
+        <tr>
+            <td><strong>BOOKING ID</strong></td>
+            <td><strong>VEHICLE_ID</strong></td>
+            <td><strong>BRANCH_LOCATION</strong></td>
+            <td><strong>STATUS</strong></td>
+            <td><strong>CUSTOMER ID</strong></td>
+            <td><strong>SELECT</strong></td>
+        </tr>
+        @foreach (var i in ViewBag.L as IList<Team5Project.Models.Customer_Vehicle_Booking1>)
+        {
+
+            <tr>
+                <td><strong>@i.Booking_id</strong></td>
+                <td><strong>@i.Vehicle_id</strong></td>
+                <td><strong>@i.Branch_Location</strong></td>
+                <td><strong>@i.Status</strong></td>
+                <td><strong>@i.Customer_id</strong></td>
+                <td><strong>@Html.CheckBox("chckboxBA", new { @value = i.Booking_id })</strong></td>
+            </tr>
+
+        }
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td><input type="submit" value="APPROVE" class="btn-success" /></td>
+        </tr>
+
+
+
+    </table>
+
+    if (ViewBag.msg != null)
+    {
+        <h1 style="color:white;">@ViewBag.msg</h1>
+    }
+
+
+}
+
+
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8093c4c40cd44abfaa0fc0c588f42b48" Name="Diagram1">
+        <EntityTypeShape EntityType="Team5ProjectModel.Branch_Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Team5ProjectModel.Customer_Profile" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Team5ProjectModel.Customer_Vehicle_Booking1" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Team5ProjectModel.User_Registration" Width="1.5" PointX="5.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Team5ProjectModel.Vehicle_Availability" Width="1.5" PointX="3.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Team5ProjectModel.Vehicle_details" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Team5ProjectModel.VehicleSearch" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="Team5ProjectModel.FK_Vehicle_Availability_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="Team5ProjectModel.FK_Customer_Vehicle_Booking1_Customer_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Team5ProjectModel.FK_Customer_Vehicle_Booking_Vehicle_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Team5ProjectModel.FK_Vehicle_Availability_Vehicle_details" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Team5ProjectModel.Branch_Vehicle_Request" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="Team5ProjectModel.FK_Branch_Vehicle_Request_Branch_id" />
+        <AssociationConnector Association="Team5ProjectModel.FK_Branch_Vehicle_Request_Vehicle_id" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

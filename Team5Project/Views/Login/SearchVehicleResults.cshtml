@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "SearchVehicleResults";
+    Layout = "~/Views/Shared/CustomerLayoutPage1.cshtml";
+}
+
+<h2>SearchVehicleResults</h2>
+@using (Html.BeginForm("VehicleBooking", "Login"))
+{
+
+
+    if (ViewBag.L != null)
+    {
+        <table border="1">
+            <tr>
+                <td style="color:white;"><strong>Select</strong></td>
+                <td style="color:white;"><strong>Manufacturer Name</strong></td>
+                <td style="color:white;"><strong>Vehicle Code</strong></td>
+                <td style="color:white;"><strong>Branch Location</strong></td>
+                <td style="color:white;"><strong>Price Range</strong></td>
+                <td style="color:white;"><strong>Colour</strong></td>
+                <td style="color:white;"><strong>Seating Capacity</strong></td>
+            </tr>
+            @foreach (var v in ViewBag.L as IList<Team5Project.Models.VehicleSearch>)
+            {
+                <tr>
+                    <td style="color:darkblue;">@Html.CheckBox("chk", new { @value = v.Vehicle_Code })</td>
+                    <td style="color:darkblue;">@v.Manufactures_name</td>
+                    <td style="color:darkblue;">@v.Vehicle_Code</td>
+                    <td style="color:darkblue;">@v.Branch_Location</td>
+                    <td style="color:darkblue;">@v.PriceRange</td>
+                    <td style="color:darkblue;">@v.Color</td>
+                    <td style="color:darkblue;">@v.Seating_Capacity</td>
+                </tr>
+            }
+        </table>
+        <tr><td>&nbsp;</td></tr>
+        <input type="submit" value="Book Vehicles" class="btn-success" />
+    }
+
+}
+
+
+
+

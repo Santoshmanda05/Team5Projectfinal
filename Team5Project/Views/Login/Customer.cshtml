@@ -1,0 +1,80 @@
+﻿@model Team5Project.Models.Customer_Profile
+@{
+    ViewBag.Title = "Customer";
+
+    Layout = "~/Views/Shared/_Customer.cshtml";
+}
+
+<h2 style="color:#40689c">Welcome Customer</h2>
+@using (Html.BeginForm("AddCustomer", "Login"))
+{
+<table>
+    <tr>
+
+
+        <td style="color:mediumvioletred;"><strong>Customer ID</strong></td>
+        <td>@Html.TextBoxFor(a => a.Customer_id)</td>
+        <td>@Html.ValidationMessageFor(a => a.Customer_id, "", new { @style = "color:white;" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="color:mediumvioletred;"><strong>Customer Name</strong></td>
+        <td>
+            @Html.TextBoxFor(a => a.Customer_name)
+        <td>@Html.ValidationMessageFor(a => a.Customer_name, "", new { @style = "color:white;" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="color: mediumvioletred;"><strong>Date of Birth</strong></td>
+        <td>@Html.TextBoxFor(a => a.Date_of_Birth)</td>
+        <td>@Html.ValidationMessageFor(a => a.Date_of_Birth, "", new { @style = "color:white;" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="color:mediumvioletred;"><strong>Address</strong></td>
+        <td>
+            @Html.TextAreaFor(a => a.Address, 3, 25, null)
+        </td>
+        <td>@Html.ValidationMessageFor(a => a.Address, "", new { @style = "color:white;" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="color:mediumvioletred;"><strong>Mail ID</strong></td>
+        <td>@Html.TextBoxFor(a => a.Mail_id)</td>
+        <td>@Html.ValidationMessageFor(a => a.Mail_id, "", new { @style = "color:white;" })</td>
+
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="color:mediumvioletred;"><strong>Phone</strong></td>
+        <td>@Html.TextBoxFor(a => a.Phone)</td>
+        <td>@Html.ValidationMessageFor(a => a.Phone, "", new { @style = "color:white;" })</td>
+
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="color:mediumvioletred;"><strong>Occupation</strong></td>
+        <td>@Html.TextBoxFor(a => a.Occupation)</td>
+        <td>@Html.ValidationMessageFor(a => a.Occupation, "", new { @style = "color:white;" })</td>
+
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="color:mediumvioletred;"><strong>Password</strong></td>
+        <td>@Html.PasswordFor(a => a.Password)</td>
+        <td>@Html.ValidationMessageFor(a => a.Password, "", new { @style = "color:white;" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><input type="submit" value="Register" class="btn-success" /></td>
+
+    </tr>
+
+</table>
+    if (ViewBag.msg != null)
+    {
+        <h1 style="color:white">@ViewBag.msg</h1>
+    }
+}
+
+

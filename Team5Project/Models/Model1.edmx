@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Team5ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branch_Admin">
+          <Key>
+            <PropertyRef Name="Branch_id" />
+          </Key>
+          <Property Name="Branch_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Branch_Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="char" MaxLength="15" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Role_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Branch_Vehicle_Request">
+          <Key>
+            <PropertyRef Name="As_On_Date" />
+            <PropertyRef Name="Vehicle_id" />
+            <PropertyRef Name="Branch_id" />
+          </Key>
+          <Property Name="As_On_Date" Type="date" Nullable="false" />
+          <Property Name="Vehicle_id" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Branch_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="No_Of_Vehicles_Requested" Type="int" />
+          <Property Name="No_Of_Vehicles_Approved" Type="int" />
+        </EntityType>
+        <EntityType Name="Customer_Profile">
+          <Key>
+            <PropertyRef Name="Customer_id" />
+          </Key>
+          <Property Name="Customer_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_of_Birth" Type="date" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="char" MaxLength="15" />
+          <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Role_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer_Vehicle_Booking1">
+          <Key>
+            <PropertyRef Name="Booking_id" />
+          </Key>
+          <Property Name="Booking_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vehicle_id" Type="nvarchar" MaxLength="10" />
+          <Property Name="Branch_Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_id" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User_Registration">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role_Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="Create_date" Type="date" />
+        </EntityType>
+        <EntityType Name="Vehicle_Availability">
+          <Key>
+            <PropertyRef Name="Vehicle_id" />
+            <PropertyRef Name="Branch_id" />
+            <PropertyRef Name="As_On_Date" />
+          </Key>
+          <Property Name="Vehicle_id" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Branch_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="As_On_Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicle_details">
+          <Key>
+            <PropertyRef Name="Vehicle_Code" />
+          </Key>
+          <Property Name="Manufactures_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vehicle_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Ex_ShowRoom_Price" Type="int" />
+          <Property Name="Color" Type="nvarchar" MaxLength="15" />
+          <Property Name="No_of_Vehicles_Available" Type="int" />
+          <Property Name="Seating_Capacity" Type="int" />
+          <Property Name="Stocks_Lasts_Still" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Team5Project.dbo.VehicleSearch' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VehicleSearch">
+          <Key>
+            <PropertyRef Name="Vehicle_Code" />
+          </Key>
+          <Property Name="Manufactures_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vehicle_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Branch_Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriceRange" Type="int" />
+          <Property Name="Color" Type="nvarchar" MaxLength="15" />
+          <Property Name="Seating_Capacity" Type="int" />
+        </EntityType>
+        <Association Name="FK_Branch_Vehicle_Request_Branch_id">
+          <End Role="Branch_Admin" Type="Self.Branch_Admin" Multiplicity="1" />
+          <End Role="Branch_Vehicle_Request" Type="Self.Branch_Vehicle_Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch_Admin">
+              <PropertyRef Name="Branch_id" />
+            </Principal>
+            <Dependent Role="Branch_Vehicle_Request">
+              <PropertyRef Name="Branch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_Vehicle_Request_Vehicle_id">
+          <End Role="Vehicle_details" Type="Self.Vehicle_details" Multiplicity="1" />
+          <End Role="Branch_Vehicle_Request" Type="Self.Branch_Vehicle_Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle_details">
+              <PropertyRef Name="Vehicle_Code" />
+            </Principal>
+            <Dependent Role="Branch_Vehicle_Request">
+              <PropertyRef Name="Vehicle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Vehicle_Booking_Vehicle_id">
+          <End Role="Vehicle_details" Type="Self.Vehicle_details" Multiplicity="0..1" />
+          <End Role="Customer_Vehicle_Booking1" Type="Self.Customer_Vehicle_Booking1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle_details">
+              <PropertyRef Name="Vehicle_Code" />
+            </Principal>
+            <Dependent Role="Customer_Vehicle_Booking1">
+              <PropertyRef Name="Vehicle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Vehicle_Booking1_Customer_id">
+          <End Role="Customer_Profile" Type="Self.Customer_Profile" Multiplicity="0..1" />
+          <End Role="Customer_Vehicle_Booking1" Type="Self.Customer_Vehicle_Booking1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_Profile">
+              <PropertyRef Name="Customer_id" />
+            </Principal>
+            <Dependent Role="Customer_Vehicle_Booking1">
+              <PropertyRef Name="Customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Availability_Branch">
+          <End Role="Branch_Admin" Type="Self.Branch_Admin" Multiplicity="1" />
+          <End Role="Vehicle_Availability" Type="Self.Vehicle_Availability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch_Admin">
+              <PropertyRef Name="Branch_id" />
+            </Principal>
+            <Dependent Role="Vehicle_Availability">
+              <PropertyRef Name="Branch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Availability_Vehicle_details">
+          <End Role="Vehicle_details" Type="Self.Vehicle_details" Multiplicity="1" />
+          <End Role="Vehicle_Availability" Type="Self.Vehicle_Availability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle_details">
+              <PropertyRef Name="Vehicle_Code" />
+            </Principal>
+            <Dependent Role="Vehicle_Availability">
+              <PropertyRef Name="Vehicle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Vehicle_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sql" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Team5ProjectModelStoreContainer">
+          <EntitySet Name="Branch_Admin" EntityType="Self.Branch_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch_Vehicle_Request" EntityType="Self.Branch_Vehicle_Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_Profile" EntityType="Self.Customer_Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_Vehicle_Booking1" EntityType="Self.Customer_Vehicle_Booking1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Registration" EntityType="Self.User_Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle_Availability" EntityType="Self.Vehicle_Availability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle_details" EntityType="Self.Vehicle_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleSearch" EntityType="Self.VehicleSearch" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VehicleSearch].[Manufactures_name] AS [Manufactures_name], 
+    [VehicleSearch].[Vehicle_Code] AS [Vehicle_Code], 
+    [VehicleSearch].[Branch_Location] AS [Branch_Location], 
+    [VehicleSearch].[PriceRange] AS [PriceRange], 
+    [VehicleSearch].[Color] AS [Color], 
+    [VehicleSearch].[Seating_Capacity] AS [Seating_Capacity]
+    FROM [dbo].[VehicleSearch] AS [VehicleSearch]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Branch_Vehicle_Request_Branch_id" Association="Self.FK_Branch_Vehicle_Request_Branch_id">
+            <End Role="Branch_Admin" EntitySet="Branch_Admin" />
+            <End Role="Branch_Vehicle_Request" EntitySet="Branch_Vehicle_Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_Vehicle_Request_Vehicle_id" Association="Self.FK_Branch_Vehicle_Request_Vehicle_id">
+            <End Role="Vehicle_details" EntitySet="Vehicle_details" />
+            <End Role="Branch_Vehicle_Request" EntitySet="Branch_Vehicle_Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Vehicle_Booking_Vehicle_id" Association="Self.FK_Customer_Vehicle_Booking_Vehicle_id">
+            <End Role="Vehicle_details" EntitySet="Vehicle_details" />
+            <End Role="Customer_Vehicle_Booking1" EntitySet="Customer_Vehicle_Booking1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Vehicle_Booking1_Customer_id" Association="Self.FK_Customer_Vehicle_Booking1_Customer_id">
+            <End Role="Customer_Profile" EntitySet="Customer_Profile" />
+            <End Role="Customer_Vehicle_Booking1" EntitySet="Customer_Vehicle_Booking1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Availability_Branch" Association="Self.FK_Vehicle_Availability_Branch">
+            <End Role="Branch_Admin" EntitySet="Branch_Admin" />
+            <End Role="Vehicle_Availability" EntitySet="Vehicle_Availability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Availability_Vehicle_details" Association="Self.FK_Vehicle_Availability_Vehicle_details">
+            <End Role="Vehicle_details" EntitySet="Vehicle_details" />
+            <End Role="Vehicle_Availability" EntitySet="Vehicle_Availability" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Team5ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Branch_Admin">
+          <Key>
+            <PropertyRef Name="Branch_id" />
+          </Key>
+          <Property Name="Branch_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Branch_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Vehicle_Availability" Relationship="Self.FK_Vehicle_Availability_Branch" FromRole="Branch_Admin" ToRole="Vehicle_Availability" />
+          <NavigationProperty Name="Branch_Vehicle_Request" Relationship="Team5ProjectModel.FK_Branch_Vehicle_Request_Branch_id" FromRole="Branch_Admin" ToRole="Branch_Vehicle_Request" />
+        </EntityType>
+        <EntityType Name="Customer_Profile">
+          <Key>
+            <PropertyRef Name="Customer_id" />
+          </Key>
+          <Property Name="Customer_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_of_Birth" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customer_Vehicle_Booking1" Relationship="Self.FK_Customer_Vehicle_Booking1_Customer_id" FromRole="Customer_Profile" ToRole="Customer_Vehicle_Booking1" />
+        </EntityType>
+        <EntityType Name="Customer_Vehicle_Booking1">
+          <Key>
+            <PropertyRef Name="Booking_id" />
+          </Key>
+          <Property Name="Booking_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vehicle_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Branch_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer_Profile" Relationship="Self.FK_Customer_Vehicle_Booking1_Customer_id" FromRole="Customer_Vehicle_Booking1" ToRole="Customer_Profile" />
+          <NavigationProperty Name="Vehicle_details" Relationship="Self.FK_Customer_Vehicle_Booking_Vehicle_id" FromRole="Customer_Vehicle_Booking1" ToRole="Vehicle_details" />
+        </EntityType>
+        <EntityType Name="User_Registration">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Create_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Vehicle_Availability">
+          <Key>
+            <PropertyRef Name="Vehicle_id" />
+            <PropertyRef Name="Branch_id" />
+            <PropertyRef Name="As_On_Date" />
+          </Key>
+          <Property Name="Vehicle_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Branch_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="As_On_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Branch_Admin" Relationship="Self.FK_Vehicle_Availability_Branch" FromRole="Vehicle_Availability" ToRole="Branch_Admin" />
+          <NavigationProperty Name="Vehicle_details" Relationship="Self.FK_Vehicle_Availability_Vehicle_details" FromRole="Vehicle_Availability" ToRole="Vehicle_details" />
+        </EntityType>
+        <EntityType Name="Vehicle_details">
+          <Key>
+            <PropertyRef Name="Vehicle_Code" />
+          </Key>
+          <Property Name="Manufactures_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vehicle_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ex_ShowRoom_Price" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="No_of_Vehicles_Available" Type="Int32" />
+          <Property Name="Seating_Capacity" Type="Int32" />
+          <Property Name="Stocks_Lasts_Still" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Customer_Vehicle_Booking1" Relationship="Self.FK_Customer_Vehicle_Booking_Vehicle_id" FromRole="Vehicle_details" ToRole="Customer_Vehicle_Booking1" />
+          <NavigationProperty Name="Vehicle_Availability" Relationship="Self.FK_Vehicle_Availability_Vehicle_details" FromRole="Vehicle_details" ToRole="Vehicle_Availability" />
+          <NavigationProperty Name="Branch_Vehicle_Request" Relationship="Team5ProjectModel.FK_Branch_Vehicle_Request_Vehicle_id" FromRole="Vehicle_details" ToRole="Branch_Vehicle_Request" />
+        </EntityType>
+        <EntityType Name="VehicleSearch">
+          <Key>
+            <PropertyRef Name="Vehicle_Code" />
+          </Key>
+          <Property Name="Manufactures_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vehicle_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Branch_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PriceRange" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Seating_Capacity" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Vehicle_Availability_Branch">
+          <End Role="Branch_Admin" Type="Self.Branch_Admin" Multiplicity="1" />
+          <End Role="Vehicle_Availability" Type="Self.Vehicle_Availability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch_Admin">
+              <PropertyRef Name="Branch_id" />
+            </Principal>
+            <Dependent Role="Vehicle_Availability">
+              <PropertyRef Name="Branch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Vehicle_Booking1_Customer_id">
+          <End Role="Customer_Profile" Type="Self.Customer_Profile" Multiplicity="0..1" />
+          <End Role="Customer_Vehicle_Booking1" Type="Self.Customer_Vehicle_Booking1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_Profile">
+              <PropertyRef Name="Customer_id" />
+            </Principal>
+            <Dependent Role="Customer_Vehicle_Booking1">
+              <PropertyRef Name="Customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Vehicle_Booking_Vehicle_id">
+          <End Role="Vehicle_details" Type="Self.Vehicle_details" Multiplicity="0..1" />
+          <End Role="Customer_Vehicle_Booking1" Type="Self.Customer_Vehicle_Booking1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle_details">
+              <PropertyRef Name="Vehicle_Code" />
+            </Principal>
+            <Dependent Role="Customer_Vehicle_Booking1">
+              <PropertyRef Name="Vehicle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Availability_Vehicle_details">
+          <End Role="Vehicle_details" Type="Self.Vehicle_details" Multiplicity="1" />
+          <End Role="Vehicle_Availability" Type="Self.Vehicle_Availability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle_details">
+              <PropertyRef Name="Vehicle_Code" />
+            </Principal>
+            <Dependent Role="Vehicle_Availability">
+              <PropertyRef Name="Vehicle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Team5ProjectEntities8" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branch_Admin" EntityType="Self.Branch_Admin" />
+          <EntitySet Name="Customer_Profile" EntityType="Self.Customer_Profile" />
+          <EntitySet Name="Customer_Vehicle_Booking1" EntityType="Self.Customer_Vehicle_Booking1" />
+          <EntitySet Name="User_Registration" EntityType="Self.User_Registration" />
+          <EntitySet Name="Vehicle_Availability" EntityType="Self.Vehicle_Availability" />
+          <EntitySet Name="Vehicle_details" EntityType="Self.Vehicle_details" />
+          <EntitySet Name="VehicleSearches" EntityType="Self.VehicleSearch" />
+          <AssociationSet Name="FK_Vehicle_Availability_Branch" Association="Self.FK_Vehicle_Availability_Branch">
+            <End Role="Branch_Admin" EntitySet="Branch_Admin" />
+            <End Role="Vehicle_Availability" EntitySet="Vehicle_Availability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Vehicle_Booking1_Customer_id" Association="Self.FK_Customer_Vehicle_Booking1_Customer_id">
+            <End Role="Customer_Profile" EntitySet="Customer_Profile" />
+            <End Role="Customer_Vehicle_Booking1" EntitySet="Customer_Vehicle_Booking1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Vehicle_Booking_Vehicle_id" Association="Self.FK_Customer_Vehicle_Booking_Vehicle_id">
+            <End Role="Vehicle_details" EntitySet="Vehicle_details" />
+            <End Role="Customer_Vehicle_Booking1" EntitySet="Customer_Vehicle_Booking1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Availability_Vehicle_details" Association="Self.FK_Vehicle_Availability_Vehicle_details">
+            <End Role="Vehicle_details" EntitySet="Vehicle_details" />
+            <End Role="Vehicle_Availability" EntitySet="Vehicle_Availability" />
+          </AssociationSet>
+          <FunctionImport Name="Vehicle_Search">
+          <Parameter Name="sql" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_VehicleSearch" EntitySet="VehicleSearches" ReturnType="Collection(Team5ProjectModel.VehicleSearch)">
+          <Parameter Name="sql" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Branch_Vehicle_Request" EntityType="Team5ProjectModel.Branch_Vehicle_Request" />
+          <AssociationSet Name="FK_Branch_Vehicle_Request_Branch_id" Association="Team5ProjectModel.FK_Branch_Vehicle_Request_Branch_id">
+            <End Role="Branch_Admin" EntitySet="Branch_Admin" />
+            <End Role="Branch_Vehicle_Request" EntitySet="Branch_Vehicle_Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_Vehicle_Request_Vehicle_id" Association="Team5ProjectModel.FK_Branch_Vehicle_Request_Vehicle_id">
+            <End Role="Vehicle_details" EntitySet="Vehicle_details" />
+            <End Role="Branch_Vehicle_Request" EntitySet="Branch_Vehicle_Request" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Branch_Vehicle_Request">
+          <Key>
+            <PropertyRef Name="As_On_Date" />
+            <PropertyRef Name="Vehicle_id" />
+            <PropertyRef Name="Branch_id" />
+          </Key>
+          <Property Name="As_On_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Vehicle_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Branch_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="No_Of_Vehicles_Requested" Type="Int32" />
+          <Property Name="No_Of_Vehicles_Approved" Type="Int32" />
+          <NavigationProperty Name="Branch_Admin" Relationship="Team5ProjectModel.FK_Branch_Vehicle_Request_Branch_id" FromRole="Branch_Vehicle_Request" ToRole="Branch_Admin" />
+          <NavigationProperty Name="Vehicle_details" Relationship="Team5ProjectModel.FK_Branch_Vehicle_Request_Vehicle_id" FromRole="Branch_Vehicle_Request" ToRole="Vehicle_details" />
+        </EntityType>
+        <Association Name="FK_Branch_Vehicle_Request_Branch_id">
+          <End Type="Team5ProjectModel.Branch_Admin" Role="Branch_Admin" Multiplicity="1" />
+          <End Type="Team5ProjectModel.Branch_Vehicle_Request" Role="Branch_Vehicle_Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch_Admin">
+              <PropertyRef Name="Branch_id" />
+            </Principal>
+            <Dependent Role="Branch_Vehicle_Request">
+              <PropertyRef Name="Branch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_Vehicle_Request_Vehicle_id">
+          <End Type="Team5ProjectModel.Vehicle_details" Role="Vehicle_details" Multiplicity="1" />
+          <End Type="Team5ProjectModel.Branch_Vehicle_Request" Role="Branch_Vehicle_Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle_details">
+              <PropertyRef Name="Vehicle_Code" />
+            </Principal>
+            <Dependent Role="Branch_Vehicle_Request">
+              <PropertyRef Name="Vehicle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Team5ProjectModelStoreContainer" CdmEntityContainer="Team5ProjectEntities8">
+          <EntitySetMapping Name="Branch_Admin">
+            <EntityTypeMapping TypeName="Team5ProjectModel.Branch_Admin">
+              <MappingFragment StoreEntitySet="Branch_Admin">
+                <ScalarProperty Name="Branch_id" ColumnName="Branch_id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Branch_Location" ColumnName="Branch_Location" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mail_id" ColumnName="Mail_id" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Role_Type" ColumnName="Role_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_Profile">
+            <EntityTypeMapping TypeName="Team5ProjectModel.Customer_Profile">
+              <MappingFragment StoreEntitySet="Customer_Profile">
+                <ScalarProperty Name="Customer_id" ColumnName="Customer_id" />
+                <ScalarProperty Name="Customer_name" ColumnName="Customer_name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mail_id" ColumnName="Mail_id" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Role_Type" ColumnName="Role_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_Vehicle_Booking1">
+            <EntityTypeMapping TypeName="Team5ProjectModel.Customer_Vehicle_Booking1">
+              <MappingFragment StoreEntitySet="Customer_Vehicle_Booking1">
+                <ScalarProperty Name="Booking_id" ColumnName="Booking_id" />
+                <ScalarProperty Name="Vehicle_id" ColumnName="Vehicle_id" />
+                <ScalarProperty Name="Branch_Location" ColumnName="Branch_Location" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Customer_id" ColumnName="Customer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Registration">
+            <EntityTypeMapping TypeName="Team5ProjectModel.User_Registration">
+              <MappingFragment StoreEntitySet="User_Registration">
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role_Type" ColumnName="Role_Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_date" ColumnName="Create_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle_Availability">
+            <EntityTypeMapping TypeName="Team5ProjectModel.Vehicle_Availability">
+              <MappingFragment StoreEntitySet="Vehicle_Availability">
+                <ScalarProperty Name="Vehicle_id" ColumnName="Vehicle_id" />
+                <ScalarProperty Name="Branch_id" ColumnName="Branch_id" />
+                <ScalarProperty Name="As_On_Date" ColumnName="As_On_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle_details">
+            <EntityTypeMapping TypeName="Team5ProjectModel.Vehicle_details">
+              <MappingFragment StoreEntitySet="Vehicle_details">
+                <ScalarProperty Name="Manufactures_name" ColumnName="Manufactures_name" />
+                <ScalarProperty Name="Vehicle_Code" ColumnName="Vehicle_Code" />
+                <ScalarProperty Name="Ex_ShowRoom_Price" ColumnName="Ex_ShowRoom_Price" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="No_of_Vehicles_Available" ColumnName="No_of_Vehicles_Available" />
+                <ScalarProperty Name="Seating_Capacity" ColumnName="Seating_Capacity" />
+                <ScalarProperty Name="Stocks_Lasts_Still" ColumnName="Stocks_Lasts_Still" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleSearches">
+            <EntityTypeMapping TypeName="Team5ProjectModel.VehicleSearch">
+              <MappingFragment StoreEntitySet="VehicleSearch">
+                <ScalarProperty Name="Manufactures_name" ColumnName="Manufactures_name" />
+                <ScalarProperty Name="Vehicle_Code" ColumnName="Vehicle_Code" />
+                <ScalarProperty Name="Branch_Location" ColumnName="Branch_Location" />
+                <ScalarProperty Name="PriceRange" ColumnName="PriceRange" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Seating_Capacity" ColumnName="Seating_Capacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Vehicle_Search" FunctionName="Team5ProjectModel.Store.Vehicle_Search" />
+          <FunctionImportMapping FunctionImportName="Fn_VehicleSearch" FunctionName="Team5ProjectModel.Store.Vehicle_Search" />
+          <EntitySetMapping Name="Branch_Vehicle_Request">
+            <EntityTypeMapping TypeName="Team5ProjectModel.Branch_Vehicle_Request">
+              <MappingFragment StoreEntitySet="Branch_Vehicle_Request">
+                <ScalarProperty Name="No_Of_Vehicles_Approved" ColumnName="No_Of_Vehicles_Approved" />
+                <ScalarProperty Name="No_Of_Vehicles_Requested" ColumnName="No_Of_Vehicles_Requested" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Branch_id" ColumnName="Branch_id" />
+                <ScalarProperty Name="Vehicle_id" ColumnName="Vehicle_id" />
+                <ScalarProperty Name="As_On_Date" ColumnName="As_On_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

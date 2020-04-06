@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "CustomerStatus";
+    Layout = "~/Views/Shared/CustomerLayoutPage1.cshtml";
+}
+
+<h2>CustomerStatus</h2>
+
+<h3>Welcome @Session["username"]</h3>
+@using (Html.BeginForm())
+{
+    <table border="1">
+        <tr>
+            <td style="color:white;"><strong>BOOKING ID</strong></td>
+            <td style="color:white;"><strong>VEHICLE_ID</strong></td>
+            <td style="color:white;"><strong>BRANCH_LOCATION</strong></td>
+            <td style="color:white;"><strong>STATUS</strong></td>
+            <td style="color:white;"><strong>CUSTOMER ID</strong></td>
+        </tr>
+        @foreach (var i in ViewBag.L as IList<Team5Project.Models.Customer_Vehicle_Booking1>)
+        {
+
+            <tr>
+                <td style="color:darkblue;">@i.Booking_id</td>
+                <td style="color:darkblue;">@i.Vehicle_id</td>
+                <td style="color:darkblue;">@i.Branch_Location</td>
+                <td style="color:darkblue;">@i.Status</td>
+                <td style="color:darkblue;">@i.Customer_id</td>
+            </tr>
+
+
+        }
+
+    </table>
+
+    
+
+
+
+
+
+
+}
+
+
+

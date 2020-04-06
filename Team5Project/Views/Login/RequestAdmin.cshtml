@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "RequestAdmin";
+    Layout = "~/Views/Shared/BranchAdminLayoutPage1.cshtml";
+}
+
+<h2>RequestAdmin</h2>
+
+<h3>Welcome @Session["username"]</h3>
+@using (Html.BeginForm("AddNumberOfVehicles", "Login"))
+{
+    <table>
+        <tr>
+
+            <td><strong>MANUFACTURES NAME</strong></td>
+            <td><strong>VEHICLE CODE</strong></td>
+            <td><strong>EX_SHOWROOM PRICE</strong></td>
+            <td><strong>COLOR</strong></td>
+            <td><strong>SEATING CAPACITY</strong></td>
+            <td><strong>STOCK DATE</strong></td>
+            <td><strong>SELECT</strong></td>
+
+        </tr>
+        @foreach (var i in ViewBag.L as IList<Team5Project.Models.Vehicle_details>)
+        {
+
+            <tr>
+                <td>@i.Manufactures_name</td>
+                <td>@i.Vehicle_Code</td>
+                <td>@i.Ex_ShowRoom_Price</td>
+                <td>@i.Color</td>
+                <td>@i.Seating_Capacity</td>
+                <td>@i.Stocks_Lasts_Still</td>
+                <td>@Html.RadioButton("rdb",i.Vehicle_Code)</td>
+
+            </tr>
+
+
+
+        }
+        <tr>
+            <td><input type="submit" value="REQUEST VEHICLES" class="btn-success" /></td>
+        </tr>
+
+
+
+    </table>
+
+
+
+
+}
+
+

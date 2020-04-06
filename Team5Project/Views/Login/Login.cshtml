@@ -1,0 +1,42 @@
+﻿@model Team5Project.Models.User_Registration
+@{
+    ViewBag.Title = "Login";    
+    Layout= "~/Views/Shared/_Loginlayout.cshtml";
+
+}
+
+<h1><strong>Welcome to Online Vehicle Booking</strong></h1>
+
+@using (Html.BeginForm("AdminLogin", "Login"))
+{
+<table align="center">
+    <tr>
+        <td><strong>Username</strong></td>
+        <td>@Html.TextBoxFor(a => a.Userid)</td>
+        <td>@Html.ValidationMessageFor(a => a.Userid, "", new { @class = "text-danger" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Password</strong></td>
+        <td>@Html.PasswordFor(a => a.Password)</td>
+        <td>@Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>Already registered user?</td>
+        <td><input type="submit" value="Login" class="btn-success" /></td>
+    </tr>
+
+    @*<tr>
+            <td><input type="button" value="NEW CUSTOMER" onclick="@("window.location.href='" + @Url.Action("Customer", "Login") + "'");" class="btn-primary"/></td>
+            <td><input type="button" value="NEW BRANCH ADMIN" onclick="@("window.location.href='" + @Url.Action("BranchAdmin", "Login") + "'");" class="btn-primary"/></td>
+        </tr>*@
+
+</table>
+
+
+}
+
+
+
+

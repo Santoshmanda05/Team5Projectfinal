@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "SuccessfulCustomer";
+    Layout = "~/Views/Shared/CustomerLayoutPage1.cshtml";
+}
+
+
+<h3 style="color:purple"><strong>WELCOME CUSTOMER</strong> @Session["username"]</h3>
+
+<h1><strong>SEARCH VEHICLES HERE!!</strong></h1>
+
+@using (Html.BeginForm("SuccessfulCustomer", "Login", FormMethod.Post))
+{
+
+    
+
+    if (ViewBag.msg != null)
+    {
+        <h1 style="color:white;">@ViewBag.msg</h1>
+    }
+
+
+}
+
+

@@ -1,0 +1,63 @@
+﻿@model Team5Project.Models.VehicleSearch
+@{
+    ViewBag.Title = "VehicleSearch";
+    Layout = "~/Views/Shared/CustomerLayoutPage1.cshtml";
+}
+
+<h1>YOU CAN SEARCH YOUR VEHICLES HERE!!!!!</h1>
+<h3> @Session["username"]</h3>
+
+@using (Html.BeginForm("SearchVehicleResults", "Login"))
+{
+<table>
+
+    <tr>
+
+        <td><strong>Manufacturer Name</strong></td>
+        <td>@Html.DropDownList("ddlmname", new SelectList(ViewBag.m, "Manufactures_name", "Manufactures_name"), "Select")</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+
+        <td><strong>Vehicle Code</strong></td>
+        <td>@Html.DropDownList("ddlvcode", new SelectList(ViewBag.m, "Vehicle_Code", "Vehicle_Code"), "Select")</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Branch Location</strong></td>
+        <td>@Html.DropDownList("ddlbloc", new SelectList(ViewBag.b, "Branch_Location", "Branch_Location"), "Select")</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Price Range</strong></td>
+        <td>@Html.TextBox("MinPrice", Request["MinPrice"])</td>
+        <td>@Html.TextBox("MaxPrice", Request["MaxPrice"])</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Colour</strong></td>
+        <td>@Html.DropDownList("ddlcolor", new SelectList(ViewBag.m, "Color", "Color"), "Select")</td>
+
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><strong>Seating Capacity</strong></td>
+        <td>@Html.DropDownList("ddlcapacity", new SelectList(ViewBag.m, "Seating_Capacity", "Seating_Capacity"), "Select")</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><input type="submit" value="Search" class=" btn-primary" /></td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+
+}
+
+
+

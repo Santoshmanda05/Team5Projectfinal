@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Team5Project.Models.VehicleSearch>
+@{
+    ViewBag.Title = "VehicleBooking";
+    Layout = "~/Views/Shared/CustomerLayoutPage1.cshtml";
+}
+
+<h2>VehicleBooking</h2>
+
+@using (Html.BeginForm("GoToBA", "Login"))
+{
+    if (Model != null)
+    {
+        <table border="1">
+            <tr>
+                <td td style="color:white;"><strong>Manufacturer Name</strong></td>
+                <td td style="color:white;"><strong>Vehicle Code</strong></td>
+                <td td style="color:white;"><strong>Branch Location</strong></td>
+                <td td style="color:white;"><strong>Price Range</strong></td>
+                <td td style="color:white;"><strong>Colour</strong></td>
+                <td td style="color:white;"><strong>Seating Capacity</strong></td>
+            </tr>
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td td style="color:darkblue;"><strong>@v.Manufactures_name</strong></td>
+                    <td td style="color:darkblue;"><strong>@v.Vehicle_Code</strong></td>
+                    <td td style="color:darkblue;"><strong>@v.Branch_Location</strong></td>
+                    <td td style="color:darkblue;"><strong>@v.PriceRange</strong></td>
+                    <td td style="color:darkblue;"><strong>@v.Color</strong></td>
+                    <td td style="color:darkblue;"><strong>@v.Seating_Capacity</strong></td>
+                </tr>
+            }
+        </table>
+        <tr><td>&nbsp;</td></tr>
+        <input type="submit" value="Confirm" />
+    }
+}
+

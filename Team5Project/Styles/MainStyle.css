@@ -1,0 +1,63 @@
+﻿.div1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.div2 {
+    position: absolute;
+    margin-top: 0%;
+    width: 100%;
+}
+
+.div3 {
+    position: absolute;
+    margin-top: 10%;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-family: Castellar;
+    color: darkblue;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #c5c9b7;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        li a:hover {
+            background-color: #111;
+        }
+
+.active {
+    background-color: lightblue;
+}
