@@ -153,7 +153,7 @@ namespace Team5Project.Models
                 Customer_Vehicle_Booking1 cvb = (Customer_Vehicle_Booking1)b.FirstOrDefault();
                 cvb.Status = cstatus;
                 v.SaveChanges();
-                return "APPROVED";
+                return "Approved Successfully";
             }
             catch (Exception) { }
             return null;
@@ -228,7 +228,7 @@ namespace Team5Project.Models
                             v.Branch_Vehicle_Request.Add(row);
                     }
                     v.SaveChanges();
-                    return "Submitted Successfully";
+                    return " Your Request has been submitted successfully, you can check your BookingStatus!!!";
                 }
                 else
                     return "Unsucessful";

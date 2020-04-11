@@ -188,7 +188,9 @@
     <Content Include="images\branchadmin.jpg" />
     <Content Include="images\Cs.jpg" />
     <Content Include="images\customer.jpg" />
+    <Content Include="images\john.png" />
     <Content Include="images\Loginimage.jpg" />
+    <Content Include="images\sam.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -264,6 +266,10 @@
     <Content Include="Views\Shared\BranchAdminLayoutPage1.cshtml" />
     <Content Include="Views\Login\AddNumberOfVehicles.cshtml" />
     <Content Include="Views\Login\AdminApprovesBA.cshtml" />
+    <Content Include="Views\Shared\_Mianpage.cshtml" />
+    <Content Include="Views\Login\MainPage.cshtml" />
+    <Content Include="Views\Login\AboutUs.cshtml" />
+    <Content Include="Views\Login\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

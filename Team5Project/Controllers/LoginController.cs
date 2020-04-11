@@ -17,6 +17,19 @@ namespace Team5Project.Controllers
         List<Customer_Vehicle_Booking1> cvblist = null;
         static List<Branch_Vehicle_Request> bvrlist = null;
 
+        public ActionResult MainPage()
+        {
+            return View();
+        }
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
         public ActionResult Login() //to show the login page,goes to login.cshtml
         {
             return View();
@@ -505,17 +518,17 @@ namespace Team5Project.Controllers
                     c.Status = "Approved";
                     string cstatus = c.Status;
                     int bookingid = c.Booking_id;
-                    DBOperations.BAapprove(cstatus, bookingid);
+                  string msg=  DBOperations.BAapprove(cstatus, bookingid);
 
                     // d.No_of_Vehicles_Available = d.No_of_Vehicles_Available - 1;
 
-
+                    ViewBag.msg = msg;
 
 
                 }
             }
 
-
+           
             return View("SuccessfulBA");
 
 

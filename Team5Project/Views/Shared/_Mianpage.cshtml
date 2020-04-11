@@ -17,14 +17,15 @@
 <body>
     <h1 style="color:mediumvioletred;font-family:Cambria;font-display:block;" class="bg-info">Online Vehicle Registration</h1>
     <div class="div1">
-        <img src="~/images/Loginimage.jpg" class="img"/>
+        <img src="~/images/Loginimage.jpg" class="img" />
     </div>
     <div class="div2">
         <ul>
-            <li>@Html.ActionLink("New Customer", "Customer", "Login")</li>
-            <li>@Html.ActionLink("New Branch Admin", "BranchAdmin", "Login")</li>
-            <li style="float:right">@Html.ActionLink("Home", "MainPage", "Login")</li>
-            <!--<li style="float:right"><a class="active" href="#about">About</a></li>-->
+            <li>@Html.ActionLink("Home", "MainPage", "Login")</li>
+            <li>@Html.ActionLink("AboutUs", "AboutUs", "Login")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Login")</li>
+            <li style="float:right">@Html.ActionLink("Login", "Login", "Login")</li>
+
         </ul>
     </div>
     <div class="div3">

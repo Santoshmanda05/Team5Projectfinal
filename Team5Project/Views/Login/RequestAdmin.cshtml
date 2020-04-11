@@ -23,14 +23,13 @@
         </tr>
         @foreach (var i in ViewBag.L as IList<Team5Project.Models.Vehicle_details>)
         {
-
             <tr>
                 <td>@i.Manufactures_name</td>
                 <td>@i.Vehicle_Code</td>
                 <td>@i.Ex_ShowRoom_Price</td>
                 <td>@i.Color</td>
                 <td>@i.Seating_Capacity</td>
-                <td>@i.Stocks_Lasts_Still</td>
+                <td>@Convert.ToDateTime(i.Stocks_Lasts_Still).ToString("dd/MM/yyyy")</td>
                 <td>@Html.RadioButton("rdb",i.Vehicle_Code)</td>
 
             </tr>
