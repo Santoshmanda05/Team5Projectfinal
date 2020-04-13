@@ -15,9 +15,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1 style="color:mediumvioletred;font-family:Cambria;font-display:block;" class="bg-info">Online Vehicle Registration</h1>
+    @if (Request.Url.AbsolutePath == "/Login/Login")
+    {
+        <h1 style="color:mediumvioletred;font-family:Cambria;font-display:block;" class="bg-info">Online Vehicle Registration</h1>
     <div class="div1">
-        <img src="~/images/Loginimage.jpg" class="img"/>
+        <img src="~/images/Loginimage.jpg" class="img" />
     </div>
     <div class="div2">
         <ul>
@@ -30,5 +32,7 @@
     <div class="div3">
         @RenderBody()
     </div>
+    }
+
 </body>
 </html>

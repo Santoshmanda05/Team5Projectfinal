@@ -17,20 +17,27 @@
 
 </head>
 <body>
-    <h1 style="color:mediumvioletred;font-family:Cambria;font-display:block;" class="bg-info">Online Vehicle Registration</h1>    <div class="div1">
+    @if(HttpContext.Current.Session["username"] != null)
+    { 
+        <h1 style="color:mediumvioletred;font-family:Cambria;font-display:block;" class="bg-info">Online Vehicle Registration</h1> <div class="div1">
 
 
-   <img src="~/images/customer.jpg" class="img" />
-</div>
+        <img src="~/images/customer.jpg" class="img" />
+    </div>
     <div class="div2">
         <ul>
-            <li style="float:right">@Html.ActionLink("Home Page", "MainPage", "Login")</li>
+            <li style="float:right">@Html.ActionLink("Home Page", "Login", "Login")</li>
             <!--<li style="float:right"><a class="active" href="#about">About</a></li>-->
         </ul>
     </div>
     <div class="div3">
         @RenderBody()
     </div>
+    }
+    else
+    {
+        Response.Redirect("~/Login/Login");
+    }
 </body>
 </html>
 

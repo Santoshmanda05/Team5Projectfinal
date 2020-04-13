@@ -30,7 +30,7 @@ namespace Team5Project.Models
         public string Customer_name { get; set; }
 
         [Required(ErrorMessage = "Password Cannot Be Blank!")]
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$", ErrorMessage = "Password Should contain atleast one Number and one Specail Character  ")]
+        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$", ErrorMessage = "Password Should contain atleast one Number and one Special Character  ")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Date of Birth Cannot be Blank")]

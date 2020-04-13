@@ -32,7 +32,7 @@ namespace Team5Project.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Name Cannot Be  Blank!")]
-        [RegularExpression("^[A-Z]{1,15}$", ErrorMessage = "Enter only Alphabets")]
+        [RegularExpression("^[A-Za-z]{1,15}$", ErrorMessage = "Enter only Alphabets")]
         public string Branch_Location { get; set; }
 
         [Required(ErrorMessage = "Address Cannot Be Blank")]

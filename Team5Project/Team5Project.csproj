@@ -247,7 +247,6 @@
     <Content Include="Views\Login\SuccessfulCustomer.cshtml" />
     <Content Include="Views\Login\VehicleSearch.cshtml" />
     <Content Include="Views\Login\WrongLogin.cshtml" />
-    <Content Include="Views\Login\AdminReject.cshtml" />
     <Content Include="Views\Login\SuccessfulBA.cshtml" />
     <Content Include="Views\Login\VehicleBooking.cshtml" />
     <Content Include="Views\Login\RejectLogin.cshtml" />
@@ -270,6 +269,7 @@
     <Content Include="Views\Login\MainPage.cshtml" />
     <Content Include="Views\Login\AboutUs.cshtml" />
     <Content Include="Views\Login\Contact.cshtml" />
+    <Content Include="Views\Login\AdminRejects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,34 +4,35 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
 }
-<h3 style="color:black"><marquee><strong>YOU CAN APPROVE REQUESTS HERE!!!!</strong></marquee> </h3>
+<h3 style="color:black"><marquee behavior="alternate"><strong>YOU CAN APPROVE REQUESTS HERE!!!!</strong></marquee> </h3>
 
 @using (Html.BeginForm("SuccessfulAdmin", "Login", FormMethod.Post))
 {
+    <h1><strong>Customer Details</strong></h1>
     <table border="1">
         <tr>
-            <td>CUSTOMERID</td>
-            <td>CUSTOMER NAME</td>
-            <td>DOB</td>
-            <td>ADDRESS</td>
-            <td>MAILID</td>
-            <td>PHONE</td>
-            <td>OCCUPATION</td>
-            <td>STATUS</td>
+            <td><strong>CUSTOMERID</strong></td>
+            <td><strong>CUSTOMER NAME</strong></td>
+            <td><strong>DOB</strong></td>
+            <td><strong>ADDRESS</strong></td>
+            <td><strong>MAILID</strong></td>
+            <td><strong>PHONE</strong></td>
+            <td><strong>OCCUPATION</strong></td>
+            <td><strong>STATUS</strong></td>
         </tr>
         @foreach (var i in ViewBag.clist as IList<Team5Project.Models.Customer_Profile>)
         {
 
             <tr>
-                <td style="color:darkblue">@i.Customer_id</td>
-                <td style="color:darkblue">@i.Customer_name</td>
-                <td style="color:darkblue">@i.Date_of_Birth</td>
-                <td style="color:darkblue">@i.Address</td>
-                <td style="color:darkblue">@i.Mail_id</td>
-                <td style="color:darkblue">@i.Phone</td>
-                <td style="color:darkblue">@i.Occupation</td>
-                <td style="color:darkblue">@i.Status</td>
-                <td style="color:darkblue">@Html.CheckBox("chckbox", new { @value = i.Customer_id })</td>
+                <td style="color:white">@i.Customer_id</td>
+                <td style="color:white">@i.Customer_name</td>
+                <td style="color:white">@Convert.ToDateTime(i.Date_of_Birth).ToString("dd/MM/yyyy")</td>
+                <td style="color:white">@i.Address</td>
+                <td style="color:white">@i.Mail_id</td>
+                <td style="color:white">@i.Phone</td>
+                <td style="color:white">@i.Occupation</td>
+                <td style="color:white">@i.Status</td>
+                <td style="color:white">@Html.CheckBox("chckbox", new { @value = i.Customer_id })</td>
 
 
             </tr>
@@ -39,31 +40,36 @@
 
 
     </table>
-
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <h1>
+        <strong>Branch Admin Details</strong>
+    </h1> 
     <table border="1">
         <tr>
-            <td>BRANCH ID</td>
-            <td>BRANCH LOCATION</td>
-            <td>ADDRESS</td>
-            <td>MAIL ID</td>
-            <td>PHONE</td>
-            <td>STATUS</td>
+            <td><strong>BRANCH ID</strong></td>
+            <td><strong>BRANCH LOCATION</strong></td>
+            <td><strong>ADDRESS</strong></td>
+            <td><strong>MAIL ID</strong></td>
+            <td><strong>PHONE</strong></td>
+            <td><strong>STATUS</strong></td>
         </tr>
         @foreach (var i in ViewBag.blist as IList<Team5Project.Models.Branch_Admin>)
         {
 
             <tr>
-                <td style="color:darkblue">@i.Branch_id</td>
-                <td style="color:darkblue">@i.Branch_Location</td>
-                <td style="color:darkblue">@i.Address</td>
-                <td style="color:darkblue">@i.Mail_id</td>
-                <td style="color:darkblue">@i.Phone</td>
-                <td style="color:darkblue">@i.Status</td>
-                <td style="color:darkblue">@Html.CheckBox("chckbox1", new { @value = i.Branch_id })</td>
+                <td style="color:white">@i.Branch_id</td>
+                <td style="color:white">@i.Branch_Location</td>
+                <td style="color:white">@i.Address</td>
+                <td style="color:white">@i.Mail_id</td>
+                <td style="color:white">@i.Phone</td>
+                <td style="color:white">@i.Status</td>
+                <td style="color:white">@Html.CheckBox("chckbox1", new { @value = i.Branch_id })</td>
 
             </tr>
 
-        }     
+        }
         <tr>
             <td><input type="submit" value="APPROVE" name="Submit" class="btn-success" /></td>
             <td><input type="submit" value="REJECT" name="Submit" class="btn-danger" /></td>

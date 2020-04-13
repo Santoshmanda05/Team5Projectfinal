@@ -18,7 +18,7 @@
         @foreach (var i in ViewBag.L as IList<Team5Project.Models.Branch_Vehicle_Request>)
         {
             <tr>
-                <td style="color:darkblue;"><strong>@i.As_On_Date</strong></td>
+                <td style="color:darkblue;"><strong>@Convert.ToDateTime(i.As_On_Date).ToString("dd/MM/yyyy")</strong></td>
                 <td style="color:darkblue;"><strong>@i.Vehicle_id</strong></td>
                 <td style="color:darkblue;"><strong>@i.Branch_id</strong></td>
                 <td style="color:darkblue;"><strong>@i.Status</strong></td>
@@ -30,7 +30,7 @@
         }
 
         <tr>
-            <td><input type="submit" value="Approve" class="btn-success"/></td>
+            <td><input type="submit" value="Click here" class="btn-success"/></td>
         </tr>
 
     </table>

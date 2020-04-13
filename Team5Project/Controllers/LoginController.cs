@@ -30,6 +30,10 @@ namespace Team5Project.Controllers
             return View();
         }
 
+        public ActionResult AdminRejects()
+        {
+            return View();
+        }
         public ActionResult Login() //to show the login page,goes to login.cshtml
         {
             return View();
@@ -217,7 +221,7 @@ namespace Team5Project.Controllers
 
             string mesg = DBOperations.UserRegistration(ulist);
             ViewBag.message = mesg;
-            return View("Login");
+            return View("Approvemsg");
         }
         [HttpPost]
         public ActionResult AdminReject()//on clicking the "REJECT" button,all selected records will have status now as "rejected" and they will be added in User_Registration table
@@ -266,7 +270,7 @@ namespace Team5Project.Controllers
             }
             string mesg = DBOperations.UserRegistration(ulist);
             ViewBag.message = mesg;
-            return View("Login");
+            return View("AdminRejects");
 
         }
         public ActionResult RequestApprove(Branch_Vehicle_Request bvr)//admin approves the requests of BA
