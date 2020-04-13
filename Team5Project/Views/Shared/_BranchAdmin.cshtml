@@ -14,8 +14,7 @@
 
 </head>
 <body>
-    @if (HttpContext.Current.Session["username"] != null)
-    {
+   
         <h1 style="color:mediumvioletred;font-family:Cambria;font-display:block;" class="bg-info">Online Vehicle Registration</h1>
         <div class="div1">
 
@@ -31,10 +30,7 @@
         <div class="div3">
             @RenderBody()
         </div>
-    }
-    else
-    {
-        Response.Redirect("~/Login/Login");
-    }
+    
+    
 </body>
 </html>

@@ -15,8 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-    @if (HttpContext.Current.Session["username"] != null)
-    {
+    
         <h1 style="color:mediumvioletred;font-family:Cambria;font-display:block;">Online Vehicle Registration</h1>
         <div class="div1">
             <img src="~/images/branchadmin.jpg" class="img" />
@@ -34,10 +33,6 @@
         <div class="div3">
             @RenderBody()
         </div>
-    }
-    else
-    {
-        Response.Redirect("~/Login/Login");
-    }
+    
     </body>
 </html>

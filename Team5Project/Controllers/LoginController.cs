@@ -36,6 +36,11 @@ namespace Team5Project.Controllers
         }
         public ActionResult Login() //to show the login page,goes to login.cshtml
         {
+            if (Session["username"] != null)
+            {
+                Session.Abandon();
+                Session.Clear();
+            }
             return View();
         }
         public ActionResult Customer() //to view the customer registration page,goes to customer.cshtml
@@ -129,18 +134,23 @@ namespace Team5Project.Controllers
         }
         public ActionResult RejectLogin()//shows reject msg to rejected status people,goes to RejectLogin.cshtml
         {
-
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
 
             return View();
         }
         public ActionResult WrongLogin()//if status is pending or wrong credentials.goes to WrongLogin.cshtml
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
 
             return View();
         }
 
         public ActionResult SuccessfulAdmin()//shows both Customer_Profile and Branch_Admin table records with status=pending and checkbox for admin to approve or reject
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             clist = DBOperations.GetAll();
             ViewBag.clist = clist;
 
@@ -166,6 +176,8 @@ namespace Team5Project.Controllers
         
         public ActionResult AdminPending()
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             bvrlist = DBOperations.ShowToAdminFromBA();
             ViewBag.L = bvrlist;
             return View("AdminPending");
@@ -177,7 +189,8 @@ namespace Team5Project.Controllers
         public ActionResult AdminApprove()//on clicking the "approve" button,all selected records will have status now as "approved" and they will be added in User_Registration table
         {
 
-
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
 
             var cid = Request.Form.Get("chckbox");
             var bid = Request.Form.Get("chckbox1");
@@ -227,6 +240,8 @@ namespace Team5Project.Controllers
         public ActionResult AdminReject()//on clicking the "REJECT" button,all selected records will have status now as "rejected" and they will be added in User_Registration table
 
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             var cid = Request.Form.Get("chckbox");
             var bid = Request.Form.Get("chckbox1");
 
@@ -275,6 +290,8 @@ namespace Team5Project.Controllers
         }
         public ActionResult RequestApprove(Branch_Vehicle_Request bvr)//admin approves the requests of BA
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             int novA = int.Parse(Request.Form["txtnovA"]);
             bvr.Status = "Approved";
             string branchid = bvr.Branch_id;
@@ -289,6 +306,8 @@ namespace Team5Project.Controllers
 
         public ActionResult AdminApprovesBA()//after admin selects one radio button,it displays details in textboxes
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             string bid = Request.Form["rdb"];
             Branch_Vehicle_Request bvr = DBOperations.ExtractAdmin(bid);
             return View(bvr);
@@ -296,6 +315,8 @@ namespace Team5Project.Controllers
         }
         public ActionResult Approvemsg()//shows the approved msg for admin after successful approval
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
 
             return View();
         }
@@ -305,7 +326,9 @@ namespace Team5Project.Controllers
 
         public ActionResult SuccessfulCustomer()//if userid and password is correct and status is approved, SuccessfulCustomer.cshtml
         {
-
+           
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             return View();
 
         }
@@ -325,6 +348,8 @@ namespace Team5Project.Controllers
         //[HttpPost]
         public ActionResult VehicleSearch()//shows search criteria with drop downs
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             blist = DBOperations.GetallBr();
             ViewBag.b = blist;
 
@@ -335,6 +360,8 @@ namespace Team5Project.Controllers
         
         public ActionResult CustomerStatus()
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             string cid = Session["username"].ToString();
             cvblist = DBOperations.ShowStatus(cid);
             ViewBag.L = cvblist;
@@ -345,7 +372,8 @@ namespace Team5Project.Controllers
 
         public ActionResult SuccessfulBA()
         {
-
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
 
             return View();
         }
@@ -367,6 +395,8 @@ namespace Team5Project.Controllers
         //[HttpPost]
         public ActionResult BAcheck()
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             string bid = Session["username"].ToString();
             bvrlist = DBOperations.GetALLBVR(bid);
             ViewBag.L = bvrlist;
@@ -376,6 +406,8 @@ namespace Team5Project.Controllers
        
         public ActionResult RequestAdmin()//showing vehicle_details to BA and making request
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             vlist = DBOperations.getvehdetails();
             ViewBag.L = vlist;
             return View("RequestAdmin");
@@ -383,6 +415,8 @@ namespace Team5Project.Controllers
         
         public ActionResult ShowToBA()//showing pending records to branch admin
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             cvblist = DBOperations.ShowTOBranchAdmin();
             ViewBag.L = cvblist;
             return View("ShowToBA");
@@ -391,6 +425,8 @@ namespace Team5Project.Controllers
 
         public ActionResult AddToRequestTable(Vehicle_details vd)//adding the selected records to Branch_Vehicle_Request table
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             Branch_Vehicle_Request bvr = null;
             List<Branch_Vehicle_Request> bvlist = new List<Branch_Vehicle_Request>();
             bvr = new Branch_Vehicle_Request();
@@ -418,6 +454,8 @@ namespace Team5Project.Controllers
         }
         public ActionResult AddNumberOfVehicles()//after BA selects one radio button,it should display that in textboxes
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             string vid = Request.Form["rdb"];
             Vehicle_details vd1 = DBOperations.ExtractBranchAdminRequest(vid);
 
@@ -428,6 +466,8 @@ namespace Team5Project.Controllers
 
         public ActionResult SearchVehicleResults()//searching based on selected criteria and shows a view WITH A table with checkboxes
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
 
             string s = null;
             string m = Request.Form["ddlmname"].ToString();
@@ -486,11 +526,15 @@ namespace Team5Project.Controllers
         }
         public ActionResult VehicleBooking(string[] chk)//send the selected checkbox data to view
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             vd = DBOperations.getvehiclelist(chk);
             return View(vd);
         }
         public ActionResult GoToBA()//adding the confirmed selected records to Customer_Vehicle_Booking table with status as pending
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
 
             Customer_Vehicle_Booking1 cvb1 = new Customer_Vehicle_Booking1();
             cvb1.Status = "Pending";
@@ -504,6 +548,8 @@ namespace Team5Project.Controllers
 
         public ActionResult BAApprove()//approving by BA
         {
+            if (Session["username"] == null)
+                return RedirectToAction("Login");
             var bookingID = Request.Form.Get("chckboxBA");
 
 
